@@ -32,5 +32,4 @@ server.pid
 /dist/
 .cache
 LICENSE
-README.md
-README
+README*
