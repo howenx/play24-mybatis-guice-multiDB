@@ -1,2 +1,0 @@
-# sharp-services
-sharp-services
