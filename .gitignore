@@ -35,5 +35,3 @@ server.pid
 *.eml
 /dist/
 .cache
-LICENSE
-README*
