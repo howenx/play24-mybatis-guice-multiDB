@@ -10,6 +10,7 @@ import service.PostgresqlService;
 import service.PostgresqlServiceMapperImpl;
 
 import javax.inject.Provider;
+import javax.inject.Singleton;
 import javax.sql.DataSource;
 
 /**
@@ -26,7 +27,7 @@ public class PrivatePostgresqlModule extends PrivateModule {
                 bindConstant().annotatedWith(
                         Names.named("mybatis.configuration.failFast")).
                         to(true);
-                bindDataSourceProviderType(HikariCPDataSourceProviderB.class);
+                bindDataSourceProviderType(HikariCPDataSourceProvider.class);
                 bindTransactionFactoryType(JdbcTransactionFactory.class);
                 addMapperClass(BrandMapper.class);
             }
@@ -48,11 +49,11 @@ public class PrivatePostgresqlModule extends PrivateModule {
     }
 
     /* Provides a HikariCP DataSourceProvider. */
-//    @Singleton
-    public static class HikariCPDataSourceProviderB implements Provider<DataSource> {
+    @Singleton
+    public static class HikariCPDataSourceProvider implements Provider<DataSource> {
         private final HikariDataSource ds = new HikariDataSource();
 
-        public HikariCPDataSourceProviderB() {
+        public HikariCPDataSourceProvider() {
             this.ds.setJdbcUrl("jdbc:postgresql://172.28.3.17:5432/style");
             this.ds.setUsername("style");
             this.ds.setPassword("style@123");

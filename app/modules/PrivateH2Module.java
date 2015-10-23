@@ -26,7 +26,7 @@ public class PrivateH2Module extends PrivateModule {
                 bindConstant().annotatedWith(
                         Names.named("mybatis.configuration.failFast")).
                         to(true);
-                bindDataSourceProviderType(HikariCPDataSourceProviderA.class);
+                bindDataSourceProviderType(HikariCPDataSourceProvider.class);
                 bindTransactionFactoryType(JdbcTransactionFactory.class);
                 addMapperClass(UserMapper.class);
             }
@@ -45,14 +45,14 @@ public class PrivateH2Module extends PrivateModule {
 
 //        expose(UserDao.class);
 //        expose(SqlSession.class).annotatedWith(Names.named("DbA"));
-    }
+}
 
     /* Provides a HikariCP DataSourceProvider. */
     @Singleton
-    public static class HikariCPDataSourceProviderA implements Provider<DataSource> {
+    public static class HikariCPDataSourceProvider implements Provider<DataSource> {
         private final HikariDataSource ds = new HikariDataSource();
 
-        public HikariCPDataSourceProviderA() {
+        public HikariCPDataSourceProvider() {
             this.ds.setJdbcUrl("jdbc:h2:file:./data;AUTO_SERVER=TRUE;IFEXISTS=TRUE;TRACE_LEVEL_FILE=0");
             this.ds.setUsername("play24-guice-mybatis");
             this.ds.setPassword("innoQ");
