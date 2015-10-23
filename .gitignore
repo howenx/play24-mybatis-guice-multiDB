@@ -1,5 +1,7 @@
 logs
 target
+/app-2.11
+/test-2.11
 /.idea
 /.idea_modules
 /.classpath
